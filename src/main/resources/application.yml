@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@//192.168.100.120:1521/galaxypdb
+    username: USR_FIOJI
+    password: App321
+    driver-class-name: oracle.jdbc.OracleDriver
+
+    ucp:
+      query-timeout: 30
+      initial-pool-size: 3
+      min-pool-size: 1
+      max-pool-size: 3
+
+      abandoned-connection-timeout: 180
+      connection-wait-timeout: 3
+      fast-connection-failover-enabled: tru
+      inactive-connection-timeout: 300
+      max-statements: 0
+      seconds-to-trust-idle-connection: 60
+      time-to-live-connection-timeout: 1800
+      timeout-check-interval: 30
+      validate-connection-on-borrow: true
+
+
+
+
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+    hibernate:
+      ddl-auto: none
