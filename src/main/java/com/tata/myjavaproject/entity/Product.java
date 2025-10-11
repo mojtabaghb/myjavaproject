@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 @Entity
 public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "USR_FIOJI.Product_seq")
     private int id;
