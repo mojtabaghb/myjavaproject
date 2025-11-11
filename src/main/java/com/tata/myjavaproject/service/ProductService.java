@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface ProductService {
 
     Product addProduct(Product product);
-    void deleteProduct(int id);
+    void    deleteProduct(int id);
     Product updateProduct(Product product);
     Product getById(int id);
     Page<Product> getProductByPage(int pageNo, int pageSize);

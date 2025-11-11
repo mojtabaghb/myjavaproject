@@ -28,3 +28,11 @@ spring:
     database-platform: org.hibernate.dialect.Oracle12cDialect
     hibernate:
       ddl-auto: none
+
+      #Swagger: API documentation
+      swagger:
+        api:
+          title: product information services
+          description: product information REST Services API Documentation
+          version: 1
+        enabled: true
