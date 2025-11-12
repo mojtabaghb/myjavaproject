@@ -45,7 +45,7 @@ public class ProductController {
     }
 
     @GetMapping("/delete-by-id/{id}")
-    @ApiOperation(value =  "حذف رکورد در دیتابیس")
+    @Operation(summary =  "حذف رکورد در دیتابیس")
     public ResponseEntity<Void> deleteById(@PathVariable (name = "id") int id) {
         productService.deleteProduct(id);
         return ResponseEntity.ok().build();
