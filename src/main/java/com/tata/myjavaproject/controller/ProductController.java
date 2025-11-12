@@ -4,6 +4,7 @@ import com.tata.myjavaproject.entity.Product;
 import com.tata.myjavaproject.entity.ProductDto;
 import com.tata.myjavaproject.service.ProductService;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import oracle.ucp.proxy.annotation.Post;
 import org.springframework.data.domain.Page;
@@ -20,7 +21,7 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping(value = "/add")
-    @ApiOperation(value = "درج رکورد در دیتابیس")
+    @Operation(summary  = "درج رکورد در دیتابیس")
     public ResponseEntity<Void> createProduct(@RequestBody Product product) {
         productService.addProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -28,7 +29,7 @@ public class ProductController {
     }
 
     @PutMapping("/update")
-    @ApiOperation(value = "آپدیت رکورد در دیتابیس")
+    @Operation(summary  = "آپدیت رکورد در دیتابیس")
     public ResponseEntity<Void> updateProduct(@RequestBody Product product) {
         productService.updateProduct(product);
         return ResponseEntity.ok().build();
@@ -36,7 +37,7 @@ public class ProductController {
     }
 
     @GetMapping("/find-by-id/{id}")
-    @ApiOperation(value = "جستجو رکورد در دیتابیس")
+    @Operation(summary  = "جستجو رکورد در دیتابیس")
     public ResponseEntity<Product> getById(@PathVariable (name = "id") int id) {
        Product product= productService.getById(id);
         return ResponseEntity.ok(product);
@@ -52,7 +53,7 @@ public class ProductController {
     }
 
     @GetMapping (value = "/find-all")
-    @ApiOperation(value = "جستجو کامل رکوردها در دیتابیس")
+    @Operation(summary  = "جستجو کامل رکوردها در دیتابیس")
     public ResponseEntity<List<Product>> findAllProduct() {
        List<Product> products= productService.getAllByPage();
         return ResponseEntity.ok(products);
@@ -60,7 +61,7 @@ public class ProductController {
     }
 
     @GetMapping (value = "/pagination/{page}/{size}")
-    @ApiOperation(value = "صفحه بندی جستجو رکورد در دیتابیس")
+    @Operation(summary  = "صفحه بندی جستجو رکورد در دیتابیس")
     public ResponseEntity<Page<Product>> paginateProduct(@PathVariable(name="page")int page,@PathVariable(name="size")int size) {
         Page<Product> productPage= productService.getProductByPage(page,size);
         return ResponseEntity.ok(productPage);
