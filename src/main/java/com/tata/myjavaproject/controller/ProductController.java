@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -38,7 +40,7 @@ public class ProductController {
 
     @GetMapping("/find-by-id/{id}")
     @Operation(summary  = "جستجو رکورد در دیتابیس")
-    public ResponseEntity<Product> getById(@PathVariable (name = "id") int id) {
+    public ResponseEntity<Product> getById(@PathVariable (name = "id") Long id) {
        Product product= productService.getById(id);
         return ResponseEntity.ok(product);
 
@@ -46,7 +48,7 @@ public class ProductController {
 
     @GetMapping("/delete-by-id/{id}")
     @Operation(summary =  "حذف رکورد در دیتابیس")
-    public ResponseEntity<Void> deleteById(@PathVariable (name = "id") int id) {
+    public ResponseEntity<Void> deleteById(@PathVariable (name = "id") Long id) {
         productService.deleteProduct(id);
         return ResponseEntity.ok().build();
 
@@ -65,6 +67,14 @@ public class ProductController {
     public ResponseEntity<Page<Product>> paginateProduct(@PathVariable(name="page")int page,@PathVariable(name="size")int size) {
         Page<Product> productPage= productService.getProductByPage(page,size);
         return ResponseEntity.ok(productPage);
+
+    }
+
+    @GetMapping (value = "/find-all/date-range/{startDate}/{endDate}")
+    @Operation(summary  = "جستجو کامل رکوردها در دیتابیس بر اساس تاریخ")
+    public ResponseEntity<List<Product>> findAllByDate(@PathVariable (name= "startDate") LocalDate startDate, @PathVariable (name= "endDate") LocalDate endDate) {
+        List<Product> products= productService.getAllByDate(startDate,endDate);
+        return ResponseEntity.ok(products);
 
     }
 

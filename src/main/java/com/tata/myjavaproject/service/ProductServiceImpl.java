@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteProduct(int id) {
+    public void deleteProduct(Long id) {
         productRepository.deleteById(id);
 
     }
@@ -43,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getById(int id) {
+    public Product getById(Long id) {
        Optional<Product> optionalProduct= productRepository.findById(id);
        if(!optionalProduct.isPresent()){
            throw  new RuntimeException("not found");
@@ -62,4 +64,12 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getAllByPage() {
         return  productRepository.findAll();
     }
+
+    @Override
+    public List<Product> getAllByDate(LocalDate startDate, LocalDate endDate) {
+        return productRepository.findByRequestDateBetween(startDate,endDate);
+    }
+
+
 }
+
