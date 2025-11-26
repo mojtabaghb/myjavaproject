@@ -1,6 +1,7 @@
 package com.tata.myjavaproject.repository;
 
 import com.tata.myjavaproject.entity.Product;
+import com.tata.myjavaproject.entity.ProductType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +12,6 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByRequestDateBetween(LocalDate startDate, LocalDate endDate);
+    List<Product> findByProductType(ProductType productType);
 
 }

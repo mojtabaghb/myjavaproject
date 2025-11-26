@@ -2,6 +2,7 @@ package com.tata.myjavaproject.service;
 
 import com.tata.myjavaproject.entity.Product;
 import com.tata.myjavaproject.entity.ProductDto;
+import com.tata.myjavaproject.entity.ProductType;
 import org.springframework.data.domain.Page;
 
 import java.time.LocalDate;
@@ -18,6 +19,7 @@ public interface ProductService {
     Page<Product> getProductByPage(int pageNo, int pageSize);
     public List<Product> getAllByPage();
     List<Product> getAllByDate(LocalDate startDate, LocalDate endDate);
+    List<Product> getAllByProductType(ProductType productType);
 
 
 }

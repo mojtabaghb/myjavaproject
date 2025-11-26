@@ -2,6 +2,7 @@ package com.tata.myjavaproject.service;
 
 import com.tata.myjavaproject.entity.Product;
 import com.tata.myjavaproject.entity.ProductDto;
+import com.tata.myjavaproject.entity.ProductType;
 import com.tata.myjavaproject.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -39,7 +40,7 @@ public class ProductServiceImpl implements ProductService {
        existProduct.setName(product.getName());
        existProduct.setPrice(product.getPrice());
        existProduct.setProduct_city(product.getProduct_city());
-       existProduct.setProduct_type(product.getProduct_type());
+       existProduct.setProductType(product.getProductType());
 
         return productRepository.save(existProduct);
     }
@@ -68,6 +69,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getAllByDate(LocalDate startDate, LocalDate endDate) {
         return productRepository.findByRequestDateBetween(startDate,endDate);
+    }
+
+    @Override
+    public List<Product> getAllByProductType(ProductType productType) {
+        return productRepository.findByProductType(productType);
     }
 
 

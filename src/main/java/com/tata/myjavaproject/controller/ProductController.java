@@ -2,6 +2,7 @@ package com.tata.myjavaproject.controller;
 
 import com.tata.myjavaproject.entity.Product;
 import com.tata.myjavaproject.entity.ProductDto;
+import com.tata.myjavaproject.entity.ProductType;
 import com.tata.myjavaproject.service.ProductService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.Operation;
@@ -74,6 +75,14 @@ public class ProductController {
     @Operation(summary  = "جستجو کامل رکوردها در دیتابیس بر اساس تاریخ")
     public ResponseEntity<List<Product>> findAllByDate(@PathVariable (name= "startDate") LocalDate startDate, @PathVariable (name= "endDate") LocalDate endDate) {
         List<Product> products= productService.getAllByDate(startDate,endDate);
+        return ResponseEntity.ok(products);
+
+    }
+
+    @GetMapping (value = "/find-by-ProductType/{ProductType}")
+    @Operation(summary  = "جستجو کامل رکوردها در دیتابیس بر اساس نوع کالا")
+    public ResponseEntity<List<Product>> findAllByProductType(@PathVariable (name= "ProductType") ProductType productType) {
+        List<Product> products= productService.getAllByProductType(productType);
         return ResponseEntity.ok(products);
 
     }

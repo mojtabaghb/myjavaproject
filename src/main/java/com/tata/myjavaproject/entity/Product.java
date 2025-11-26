@@ -23,7 +23,7 @@ public class Product {
     private  String product_city;
 
     @Column(name = "PRODUCT_TYPE")
-    private  ProductType product_type;
+    private  ProductType productType;
 
     @Column(name = "PRICE")
     private Long price;
