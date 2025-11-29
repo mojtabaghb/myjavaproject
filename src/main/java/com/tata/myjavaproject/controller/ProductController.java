@@ -59,7 +59,7 @@ public class ProductController {
     @Operation(summary  = "جستجو کامل رکوردها در دیتابیس")
     public ResponseEntity<List<Product>> findAllProduct() {
        List<Product> products= productService.getAllByPage();
-        return ResponseEntity.ok(products);
+         return ResponseEntity.ok(products);
 
     }
 
