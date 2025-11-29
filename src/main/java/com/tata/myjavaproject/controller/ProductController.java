@@ -76,7 +76,7 @@ public class ProductController {
     public ResponseEntity<List<Product>> findAllByDate(@PathVariable (name= "startDate") LocalDate startDate, @PathVariable (name= "endDate") LocalDate endDate) {
         List<Product> products= productService.getAllByDate(startDate,endDate);
         return ResponseEntity.ok(products);
-        //cherati
+
 
     }
 
